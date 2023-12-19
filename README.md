@@ -1,13 +1,8 @@
-# r3.01_site_web
-<h1> Ce dépôt sert à héberger notre projet de fin de module PHP en R3.01 Développememt-Web </h1>
-<p>
-  Les deux étudiants travaillant sur ce dépôt sont réspectivement: <br>
-  <ul>
-    <li>
-      Maxime MONTOURO
-    </li>
-    <li>
-      Alexandre Picoulet-Sonder
-    </li>
-  </ul>
-</p>
+# Projet R3.01 - Développement Web
+
+Ce dépôt GitHub est dédié à notre projet de PHP en R3.01 Développement Web.
+
+## Auteurs
+
+- Maxime MONTOURO
+- Alexandre Picoulet-Sonder
