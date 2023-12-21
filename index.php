@@ -174,6 +174,7 @@ $cds = afficher();
             <li><a href="https://github.com/MaxMontouro" class="text-white">MONTOURO Maxime</a><img src="./img/github.png" width="40" height="40" style="margin-left: 10px;"></li>
             <li><a href="https://github.com/alex-picoulet" class="text-white">PICOULET--SONDER Alexandre</a><img src="./img/github.png" width="40" height="40" style="margin-left: 10px;"></li>
             </br><li><h5><a href ="login.php" class= "text-white">Se Connecter</a></h5></li>
+            </br><li><h5><a href ="panier.php" class= "text-white">Panier</a></h5></li>
           </ul>
         </div>
       </div>
@@ -200,31 +201,66 @@ $cds = afficher();
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
+      
 
-      <?php foreach($cds as $cd): ?>
-        <div class="col">
-          <div class="card shadow-sm">
-              <title><?= $cd->nomCD ?></title><img src="<?= $cd->imagePochette ?>" alt="">
+      <?php foreach ($cds as $cd): ?>
+    <div class="col">
+        <div class="card shadow-sm">
+            <title><?= $cd->nomCD ?></title>
+            <img src="<?= $cd->imagePochette ?>" alt="">
             <div class="card-body">
-              <p class="card-text"><strong><?= $cd->nomCD ?></p><p><?= $cd->alias ?></p><?= $cd->dateSortie ?></p></strong>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Acheter (panier)</button>
+                <p class="card-text"><strong><?= $cd->nomCD ?></p>
+                <p><?= $cd->alias ?></p>
+                <?= $cd->dateSortie ?></p></strong>
+                <div class="d-flex justify-content-between align-items-center">
+                    <form method="post">
+                        <input type="hidden" name="IDcd" value="<?= $cd->IDcd ?>">
+                        <input type="hidden" name="nomCD" value="<?= $cd->nomCD ?>">
+                        <input type="hidden" name="dateSortie" value="<?= $cd->dateSortie ?>">
+                        <input type="hidden" name="imagePochette" value="<?= $cd->imagePochette ?>">
+                        <input type="hidden" name="prix" value="<?= $cd->prix ?>">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary" name="acheter">Acheter (panier)</button>
+                    </form>
+                    <small class="text-body-secondary"><?= $cd->prix ?> €</small>
                 </div>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Consulter</button>
-                </div>
-                <small class="text-body-secondary"><?= $cd->prix ?> €</small>
-              </div>
             </div>
-          </div>
         </div>
-      <?php endforeach; ?>
+    </div>
+<?php endforeach; ?>
+
+
+
+
+<?php
+if (isset($_POST['acheter'])) {
+    if (
+        isset($_POST['IDcd']) &&
+        isset($_POST['nomCD']) &&
+        isset($_POST['dateSortie']) &&
+        isset($_POST['imagePochette']) &&
+        isset($_POST['prix'])
+    ) {
+        try {
+            $IDcdAjout = $_POST['IDcd'];
+            $nomCdAjout = $_POST['nomCD'];
+            $dateSortieAjout = $_POST['dateSortie'];
+            $imagePochetteAjout = $_POST['imagePochette'];
+            $prixAjout = $_POST['prix'];
+
+            ajouterPanier($IDcdAjout, $nomCdAjout, $dateSortieAjout, $imagePochetteAjout, $prixAjout);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+}
+
+?>
 
 
       </div>
     </div>
   </div>
+
 
 </main>
     </body>
