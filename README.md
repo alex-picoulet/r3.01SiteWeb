@@ -6,7 +6,7 @@
       Maxime MONTOURO
     </li>
     <li>
-      Alexandre Picoulet-Sonder
+      Alexandre PICOULET--SONDER
     </li>
   </ul>
 </p>
